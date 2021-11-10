@@ -1,5 +1,0 @@
-dni
-fecha 
-total de compra 
-descuento 
-costo del producto 
