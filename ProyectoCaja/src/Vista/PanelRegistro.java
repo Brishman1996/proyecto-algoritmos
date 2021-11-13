@@ -3,32 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package RegistroDeCompra;
-
+package Vista;
+import Controlador.ListaProducto;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
  * @author HP
  */
 public class PanelRegistro extends javax.swing.JFrame {
-    DefaultTableModel Producto;
+ public static DefaultTableModel ListProducto2;
+   
     public PanelRegistro() {
         initComponents();
-          Producto = new DefaultTableModel();
-        Producto.addColumn("Nombre Producto");
-        //modelo.addColumn("Apellido");
-        Producto.addColumn("Codigo Producto");
-        Producto.addColumn("Precio unitario");
-        Producto.addColumn("Cantidad");
-        this.TablaProduct.setModel(Producto);
-        String ProductosTabla[]= new String[4];
-        ProductosTabla[0]="pantalon jean";
-        ProductosTabla[1]="pantalon jean";
-        ProductosTabla[2]="450";
-        ProductosTabla[3]="pantalon jean";
-        ProductosTabla[4]="pantalon jean";
-        Producto.addRow(ProductosTabla);
+       TablaProduct.setModel(Agregar.ListProducto);
+       Agregar.ListProducto.addColumn("seleccionar");
+        addCheckBox(4,TablaProduct);
+    }
+    public void addCheckBox(int column, JTable table){
+    TableColumn tc = table.getColumnModel().getColumn(column);
+    
+    tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+    tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+    }
+    public boolean IsSelected(int row, int column,JTable table){
+    return table.getValueAt(row,column) != null;
     }
 
     /**
@@ -62,7 +63,7 @@ public class PanelRegistro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
-        btnMostrarProduct = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,25 +107,18 @@ public class PanelRegistro extends javax.swing.JFrame {
 
         TablaProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "null", "null", ""
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -152,7 +146,12 @@ public class PanelRegistro extends javax.swing.JFrame {
 
         btnCancelar.setText("Cancelar");
 
-        btnMostrarProduct.setText("Mostrar Producto");
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,9 +161,7 @@ public class PanelRegistro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(NumComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NumDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,34 +179,31 @@ public class PanelRegistro extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(Tipo_comprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addGap(420, 420, 420))
+                        .addGap(427, 427, 427))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel8)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnCopiarVaucher, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(checkBolsa)
                                     .addComponent(jLabel10)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnCancelar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(NumTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(checkBolsa)
-                                                .addGap(78, 78, 78))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(btnCopiarVaucher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(12, 12, 12)))
-                                        .addComponent(btnImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnMostrarProduct)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnCancelar))))
+                                    .addComponent(jLabel8)))
                             .addComponent(jLabel7)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(241, 241, 241)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(16, Short.MAX_VALUE))))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(NumComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +231,7 @@ public class PanelRegistro extends javax.swing.JFrame {
                     .addComponent(NumComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Tipo_comprobante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -246,14 +240,14 @@ public class PanelRegistro extends javax.swing.JFrame {
                         .addComponent(checkBolsa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnMostrarProduct)
-                            .addComponent(btnCancelar))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCancelar)
+                            .addComponent(btnConfirmar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnImprimir)
                             .addComponent(btnCopiarVaucher)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -272,6 +266,7 @@ public class PanelRegistro extends javax.swing.JFrame {
 
     private void Tipo_comprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tipo_comprobanteActionPerformed
         // TODO add your handling code here:
+      
     }//GEN-LAST:event_Tipo_comprobanteActionPerformed
 
     private void btnCopiarVaucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopiarVaucherActionPerformed
@@ -282,8 +277,23 @@ public class PanelRegistro extends javax.swing.JFrame {
 
     private void TablaProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductMouseClicked
         // click tabla
+        
     }//GEN-LAST:event_TablaProductMouseClicked
 
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        // BOTON DE CONFIRMAR
+       NumTotal.setText(Double.toString(suma()));
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+    public double suma(){
+        int contar = TablaProduct.getRowCount();
+        double suma = 0;
+        for (int i = 0; i < contar; i++) {
+            if(IsSelected(i,4,TablaProduct)){
+                suma = suma+Double.parseDouble(Agregar.ListProducto.getValueAt(i,3).toString());
+            }
+        }
+        return suma;
+}
     /**
      * @param args the command line arguments
      */
@@ -328,9 +338,9 @@ public class PanelRegistro extends javax.swing.JFrame {
     private javax.swing.JTable TablaProduct;
     private javax.swing.JComboBox<String> Tipo_comprobante;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnCopiarVaucher;
     private javax.swing.JButton btnImprimir;
-    private javax.swing.JButton btnMostrarProduct;
     private javax.swing.JRadioButton checkBolsa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
