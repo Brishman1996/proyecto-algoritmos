@@ -18,8 +18,8 @@ public class PanelRegistro extends javax.swing.JFrame {
    
     public PanelRegistro() {
         initComponents();
-       TablaProduct.setModel(Agregar.ListProducto);
-       Agregar.ListProducto.addColumn("seleccionar");
+       TablaProduct.setModel(StockProducto.ListProducto);
+       StockProducto.ListProducto.addColumn("seleccionar");
         addCheckBox(4,TablaProduct);
     }
     public void addCheckBox(int column, JTable table){
@@ -289,7 +289,7 @@ public class PanelRegistro extends javax.swing.JFrame {
         double suma = 0;
         for (int i = 0; i < contar; i++) {
             if(IsSelected(i,4,TablaProduct)){
-                suma = suma+Double.parseDouble(Agregar.ListProducto.getValueAt(i,3).toString());
+                suma = suma+Double.parseDouble(StockProducto.ListProducto.getValueAt(i,3).toString());
             }
         }
         return suma;
