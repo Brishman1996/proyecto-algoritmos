@@ -5,12 +5,14 @@
  */
 package Vista;
 
+import Controlador.Controller;
 /**
  *
  * @author canow
  */
 public class HistorialVenta extends javax.swing.JFrame {
-
+    
+    private Controller controller;
     /**
      * Creates new form HistorialVenta
      */
@@ -208,4 +210,8 @@ public class HistorialVenta extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    public void setController(Controller controller){
+        this.controller = controller;
+    }
 }

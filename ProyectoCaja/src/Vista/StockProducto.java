@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Controlador.Controller;
 import Controlador.ListaProducto;
 import javax.swing.table.DefaultTableModel;
 import Vista.PanelRegistro;
@@ -10,6 +11,8 @@ import javax.swing.JOptionPane;
  * @author HP
  */
 public class StockProducto extends javax.swing.JFrame {
+    private Controller controller;
+    
     public static DefaultTableModel ListProducto;
     /** Creates new form Agregar */
     public StockProducto() {
@@ -274,5 +277,9 @@ public class StockProducto extends javax.swing.JFrame {
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
 
 }

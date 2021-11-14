@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Vista;
+
+import Controlador.Controller;
 import Controlador.ListaProducto;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -14,22 +16,27 @@ import javax.swing.table.TableColumn;
  * @author HP
  */
 public class PanelRegistro extends javax.swing.JFrame {
- public static DefaultTableModel ListProducto2;
-   
+
+    private Controller controller;
+    
+    public static DefaultTableModel ListProducto2;
+
     public PanelRegistro() {
         initComponents();
-       TablaProduct.setModel(StockProducto.ListProducto);
-       StockProducto.ListProducto.addColumn("seleccionar");
-        addCheckBox(4,TablaProduct);
+        TablaProduct.setModel(StockProducto.ListProducto);
+        StockProducto.ListProducto.addColumn("seleccionar");
+        addCheckBox(4, TablaProduct);
     }
-    public void addCheckBox(int column, JTable table){
-    TableColumn tc = table.getColumnModel().getColumn(column);
-    
-    tc.setCellEditor(table.getDefaultEditor(Boolean.class));
-    tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+
+    public void addCheckBox(int column, JTable table) {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
-    public boolean IsSelected(int row, int column,JTable table){
-    return table.getValueAt(row,column) != null;
+
+    public boolean IsSelected(int row, int column, JTable table) {
+        return table.getValueAt(row, column) != null;
     }
 
     /**
@@ -266,34 +273,35 @@ public class PanelRegistro extends javax.swing.JFrame {
 
     private void Tipo_comprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tipo_comprobanteActionPerformed
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_Tipo_comprobanteActionPerformed
 
     private void btnCopiarVaucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopiarVaucherActionPerformed
         // TODO add your handling code here:
-       
-     
+
+
     }//GEN-LAST:event_btnCopiarVaucherActionPerformed
 
     private void TablaProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductMouseClicked
         // click tabla
-        
+
     }//GEN-LAST:event_TablaProductMouseClicked
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // BOTON DE CONFIRMAR
-       NumTotal.setText(Double.toString(suma()));
+        NumTotal.setText(Double.toString(suma()));
     }//GEN-LAST:event_btnConfirmarActionPerformed
-    public double suma(){
+    public double suma() {
         int contar = TablaProduct.getRowCount();
         double suma = 0;
         for (int i = 0; i < contar; i++) {
-            if(IsSelected(i,4,TablaProduct)){
-                suma = suma+Double.parseDouble(StockProducto.ListProducto.getValueAt(i,3).toString());
+            if (IsSelected(i, 4, TablaProduct)) {
+                suma = suma + Double.parseDouble(StockProducto.ListProducto.getValueAt(i, 3).toString());
             }
         }
         return suma;
-}
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -354,4 +362,8 @@ public class PanelRegistro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
 }

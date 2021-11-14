@@ -5,11 +5,15 @@
  */
 package Vista;
 
+import Controlador.Controller;
+
 /**
  *
  * @author eduar
  */
 public class Inventario extends javax.swing.JFrame {
+
+    private Controller controller;
 
     /**
      * Creates new form Inventario
@@ -283,4 +287,8 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JTextField txtProducto;
     private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
 }

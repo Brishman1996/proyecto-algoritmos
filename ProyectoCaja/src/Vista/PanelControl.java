@@ -5,11 +5,15 @@
  */
 package Vista;
 
+import Controlador.Controller;
+
 /**
  *
  * @author eduar
  */
 public class PanelControl extends javax.swing.JFrame {
+
+    private Controller controller;
 
     /**
      * Creates new form PanelControl
@@ -76,6 +80,10 @@ public class PanelControl extends javax.swing.JFrame {
                 new PanelControl().setVisible(true);
             }
         });
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
