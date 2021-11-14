@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import Controlador.Controller;
+
 
 /**
  *
@@ -13,7 +13,6 @@ import Controlador.Controller;
  */
 public class Comprobante extends javax.swing.JFrame {
     
-    private Controller controller;
     /**
      * Creates new form Comprobante
      */
@@ -421,7 +420,4 @@ public class Comprobante extends javax.swing.JFrame {
     private javax.swing.JTable jTablepersonal;
     // End of variables declaration//GEN-END:variables
 
-    public void setController(Controller controller) {
-        this.controller = controller;
-    }
 }

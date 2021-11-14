@@ -5,13 +5,17 @@
  */
 package Controlador;
 
+import Vista.PanelControl;
 /**
  *
  * @author canow
  */
-public class Principal {
+public class PCcordinador {
+
+    private PanelControl panelControl;
     
-    public static void main(String[] args) {
-        
+    public void setPanelControl(PanelControl panelControl) {
+        this.panelControl = panelControl;
     }
+    
 }

@@ -5,7 +5,6 @@
  */
 package Vista;
 
-import Controlador.Controller;
 import Controlador.ListaProducto;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -17,7 +16,6 @@ import javax.swing.table.TableColumn;
  */
 public class PanelRegistro extends javax.swing.JFrame {
 
-    private Controller controller;
     
     public static DefaultTableModel ListProducto2;
 
@@ -363,7 +361,5 @@ public class PanelRegistro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    public void setController(Controller controller) {
-        this.controller = controller;
-    }
+   
 }
